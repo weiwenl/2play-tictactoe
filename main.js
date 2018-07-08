@@ -1,14 +1,13 @@
 //Call to start game and print msg X will start first
+document.gameNum = 0;
 function startGame() {
   for(var i = 1; i <= 9; i ++){
     clearBox(i);
   }
-  document.turn = "X";
-      if(document.turn == "X") {
-        document.turn
-      }
+  document.turn = document.gameNum%2?"O":"X";
   document.winner = null;
   setMessage(document.turn + " get's to start")
+  document.gameNum++;
 }
 //Call to print in-game message
 function setMessage(msg) {
@@ -18,6 +17,7 @@ function setMessage(msg) {
 function nextMove(square) {
   if (document.winner != null) {
     setMessage(document.winner + " already won")
+    document.turn = (document.turn == "X") ? "O" : "X";
   }
   else if(square.innerText == '') {
       square.innerText = document.turn;
