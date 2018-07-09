@@ -1,10 +1,12 @@
 //Call to start game and print msg X will start first
 document.gameNum = 0;
+const CROSS = '🎃';
+const KNOTS = '👻';
 function startGame() {
   for(var i = 1; i <= 9; i ++){
     clearBox(i);
   }
-  document.turn = document.gameNum%2?"O":"X";
+  document.turn = document.gameNum%2?KNOTS:CROSS;
   document.winner = null;
   setMessage(document.turn + " get's to start")
   document.gameNum++;
@@ -17,7 +19,7 @@ function setMessage(msg) {
 function nextMove(square) {
   if (document.winner != null) {
     setMessage(document.winner + " already won")
-    document.turn = (document.turn == "X") ? "O" : "X";
+    document.turn = (document.turn == CROSS) ? KNOTS : CROSS;
   }
   else if(square.innerText == '') {
       square.innerText = document.turn;
@@ -36,12 +38,12 @@ function switchTurn() {
   else if(CheckforTie()) {
     setMessage("It's a Tie, Play Again!")
   }
-  else if(document.turn == "X") {
-    document.turn = "O";
+  else if(document.turn == CROSS) {
+    document.turn = KNOTS;
     setMessage("It's " + document.turn + "'s turn")
   }
   else {
-    document.turn = "X";
+    document.turn = CROSS;
     setMessage("It's " + document.turn + "'s turn")
   }
 }
